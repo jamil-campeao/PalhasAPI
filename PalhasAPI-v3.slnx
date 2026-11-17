@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PalhasAPI.API/PalhasAPI.API.csproj" />
+  <Project Path="PalhasAPI.Application/PalhasAPI.Application.csproj" />
+  <Project Path="PalhasAPI.Domain/PalhasAPI.Domain.csproj" />
+  <Project Path="PalhasAPI.Infrastructure/PalhasAPI.Infrastructure.csproj" />
+</Solution>

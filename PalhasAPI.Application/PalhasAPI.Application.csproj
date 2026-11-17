@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PalhasAPI.Domain\PalhasAPI.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Estoque\" />
+    <Folder Include="Financeiro\" />
+    <Folder Include="IA\" />
+    <Folder Include="Vendas\Comands\" />
+    <Folder Include="Vendas\Handlers\" />
+    <Folder Include="Vendas\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.3.0" />
+    <PackageReference Include="FluentValidation" Version="12.2.0" />
+    <PackageReference Include="MediatR" Version="14.3.0" />
+  </ItemGroup>
+
+</Project>

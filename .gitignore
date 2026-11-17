@@ -1,0 +1,32 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# User secrets
+**/secrets.json
+appsettings.Development.json
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# OS
+.DS_Store
+Thumbs.db
+
+appsettings.json

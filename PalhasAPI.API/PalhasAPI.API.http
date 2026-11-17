@@ -1,0 +1,6 @@
+@PalhasAPI.API_HostAddress = http://localhost:5155
+
+GET {{PalhasAPI.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
