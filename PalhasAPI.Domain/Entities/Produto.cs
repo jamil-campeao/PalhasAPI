@@ -31,5 +31,15 @@ namespace PalhasAPI.Domain.Entities
             Ativo = true;
             CriadoEm = DateTime.UtcNow;
         }
+
+        public void Atualizar(string nome, string? descricao, decimal precoVenda, decimal custoProducao, string unidade, int estoqueMinimo)
+        {
+            Nome = nome;
+            Descricao = descricao ?? Descricao;
+            PrecoVenda = precoVenda;
+            CustoProducao = custoProducao;
+            Unidade = unidade;
+            EstoqueMinimo = estoqueMinimo;
+        }
     }
 }
