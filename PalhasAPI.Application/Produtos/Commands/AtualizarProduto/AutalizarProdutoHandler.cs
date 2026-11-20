@@ -1,6 +1,7 @@
 ﻿
 
 using MediatR;
+using PalhasAPI.Domain.Exceptions;
 using PalhasAPI.Domain.Interfaces;
 
 namespace PalhasAPI.Application.Produtos.Commands.AtualizarProduto
@@ -16,7 +17,7 @@ namespace PalhasAPI.Application.Produtos.Commands.AtualizarProduto
 
         public async Task Handle(AtualizarProdutoCommand request, CancellationToken cancellationToken)
         {
-            var produto = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new Exception("Produto não encontrado");
+            var produto = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new NotFoundException("Produto", request.Id);
 
             produto.Atualizar(
                 request.Nome,

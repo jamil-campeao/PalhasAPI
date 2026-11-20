@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PalhasAPI.API.Middlewares;
 using PalhasAPI.Application.Clientes.Commands.CriarCliente;
 using PalhasAPI.Domain.Interfaces;
 using PalhasAPI.Infrastructure.Persistence;
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<PalhasDbContext>(options =>
 });
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CriarClienteCommand).Assembly));
 builder.Services.AddOpenApi();
@@ -32,6 +34,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

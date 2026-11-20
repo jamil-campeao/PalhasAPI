@@ -11,10 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Estoque\" />
     <Folder Include="Financeiro\" />
     <Folder Include="IA\" />
-    <Folder Include="NewFolder\" />
     <Folder Include="Vendas\Comands\" />
     <Folder Include="Vendas\Handlers\" />
     <Folder Include="Vendas\Queries\" />

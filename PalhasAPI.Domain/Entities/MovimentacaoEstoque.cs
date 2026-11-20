@@ -21,7 +21,7 @@ namespace PalhasAPI.Domain.Entities
             Quantidade = quantidade;
             Motivo = motivo;
             CriadoEm = DateTime.UtcNow;
-            PedidoId = pedidoId;
+            PedidoId = pedidoId ?? PedidoId;
         }
     }
 }

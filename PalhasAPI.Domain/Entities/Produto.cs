@@ -1,4 +1,6 @@
 ﻿
+using PalhasAPI.Domain.Exceptions;
+
 namespace PalhasAPI.Domain.Entities
 {
     public class Produto
@@ -40,6 +42,21 @@ namespace PalhasAPI.Domain.Entities
             CustoProducao = custoProducao;
             Unidade = unidade;
             EstoqueMinimo = estoqueMinimo;
+        }
+
+        public void AdicionarEstoque(int quantidade)
+        {
+            EstoqueAtual += quantidade;
+        }
+
+        public void RemoverEstoque(int quantidade)
+        {
+            if (quantidade > EstoqueAtual)
+            {
+                throw new BusinessException("Estoque insuficiente para realizar a saída");
+            }
+
+            EstoqueAtual -= quantidade;
         }
     }
 }

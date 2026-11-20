@@ -1,5 +1,6 @@
 ﻿
 using MediatR;
+using PalhasAPI.Domain.Exceptions;
 using PalhasAPI.Domain.Interfaces;
 
 namespace PalhasAPI.Application.Clientes.Commands.AtualizarCliente
@@ -15,7 +16,7 @@ namespace PalhasAPI.Application.Clientes.Commands.AtualizarCliente
 
         public async Task Handle(AtualizarClienteCommand request, CancellationToken cancellationToken)
         {
-            var cliente = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new Exception("Cliente não encontrado");
+            var cliente = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new NotFoundException("Cliente", request.Id);
             
             cliente.Atualizar(request.Nome, request.Telefone, request.Observacoes);
 
