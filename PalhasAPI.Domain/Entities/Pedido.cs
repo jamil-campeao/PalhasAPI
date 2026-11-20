@@ -1,4 +1,5 @@
 ﻿using PalhasAPI.Domain.Enum;
+using PalhasAPI.Domain.Exceptions;
 
 namespace PalhasAPI.Domain.Entities
 {
@@ -32,6 +33,35 @@ namespace PalhasAPI.Domain.Entities
             Desconto = 0;
             Total = 0;
             Observacoes = observacoes;
+        }
+
+
+        public void AdicionarItem(ItemPedido item)
+        {
+            Itens.Add(item);
+            Subtotal += item.Subtotal;
+            Total = Subtotal - Desconto;
+        }
+
+        public void AplicarDesconto(decimal desconto)
+        {
+            Desconto = desconto;
+            Total = Subtotal - Desconto;
+        }
+
+        public void AdicionarPagamento(Pagamento pagamento)
+        {
+            Pagamentos.Add(pagamento);
+        }
+
+        public void AtualizarStatus(StatusPedido novoStatus)
+        {
+            if (!System.Enum.IsDefined(typeof(StatusPedido), novoStatus))
+            {
+                throw new BusinessException($"Status '{novoStatus}' inválido.");
+            }
+
+            Status = novoStatus;
         }
     }
 }

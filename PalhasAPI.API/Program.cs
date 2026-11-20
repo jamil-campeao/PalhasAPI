@@ -18,6 +18,7 @@ builder.Services.AddDbContext<PalhasDbContext>(options =>
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CriarClienteCommand).Assembly));
 builder.Services.AddOpenApi();

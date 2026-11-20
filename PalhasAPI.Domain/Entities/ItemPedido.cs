@@ -11,11 +11,10 @@
         public decimal PrecoUnitario { get; private set; }
         public decimal Subtotal { get; private set; }
 
-        public ItemPedido(Guid produtoId, Guid pedidoId, int quantidade, decimal precoUnitario)
+        public ItemPedido(Guid produtoId, int quantidade, decimal precoUnitario)
         {
             Id = Guid.NewGuid();
             ProdutoId = produtoId;
-            PedidoId = pedidoId;
             Quantidade = quantidade;
             PrecoUnitario = precoUnitario;
             Subtotal = quantidade * precoUnitario;
