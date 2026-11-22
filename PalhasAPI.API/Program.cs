@@ -1,5 +1,8 @@
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PalhasAPI.API.Middlewares;
+using PalhasAPI.Application.Behaviors;
 using PalhasAPI.Application.Clientes.Commands.CriarCliente;
 using PalhasAPI.Domain.Interfaces;
 using PalhasAPI.Infrastructure.Persistence;
@@ -19,8 +22,12 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddValidatorsFromAssembly(typeof(CriarClienteCommand).Assembly);
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(CriarClienteCommand).Assembly));
+{
+    cfg.RegisterServicesFromAssembly(typeof(CriarClienteCommand).Assembly);
+    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+});
 builder.Services.AddOpenApi();
 
 var app = builder.Build();

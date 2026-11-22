@@ -28,6 +28,19 @@ namespace PalhasAPI.API.Middlewares
             {
                 await EscreverResposta(context, HttpStatusCode.BadRequest, ex.Message);
             }
+            catch(FluentValidation.ValidationException ex)
+            {
+                var erros = ex.Errors.Select(e => e.ErrorMessage).ToList();
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = 422;
+
+                var resposta = new { erros };
+                var opcoes = new JsonSerializerOptions
+                {
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+                await context.Response.WriteAsync(JsonSerializer.Serialize(resposta, opcoes));
+            }
             catch (Exception ex)
             {
                 await EscreverResposta(context, HttpStatusCode.InternalServerError, "Ocorreu um erro inesperado");
