@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PalhasAPI.Application.Pedidos.Commands.AtualizarStatusPedido;
 using PalhasAPI.Application.Pedidos.Commands.CriarPedido;
+using PalhasAPI.Application.Pedidos.DTOs;
 using PalhasAPI.Application.Pedidos.Queries.BuscarPedidoPorId;
 using PalhasAPI.Application.Pedidos.Queries.ListarPedidos;
 
@@ -43,9 +44,9 @@ namespace PalhasAPI.API.Controllers
         }
 
         [HttpPatch("{id:guid}/status")]
-        public async Task<IActionResult> AtualizarStatus(Guid id, [FromBody] AtualizarStatusPedidoCommand command, CancellationToken cancellationToken)
+        public async Task<IActionResult> AtualizarStatus(Guid id, [FromBody] AtualizarStatusDto body, CancellationToken cancellationToken)
         {
-            if (id != command.Id) return BadRequest("O id da rota não confere com o do body.");
+            var command =  new AtualizarStatusPedidoCommand(id, body.NovoStatus);
 
             await _mediator.Send(command, cancellationToken);
             return NoContent();

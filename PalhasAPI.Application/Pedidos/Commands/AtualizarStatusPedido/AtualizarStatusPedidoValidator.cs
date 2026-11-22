@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FluentValidation;
 
 namespace PalhasAPI.Application.Pedidos.Commands.AtualizarStatusPedido
 {
-    internal class AtualizarStatusPedidoValidator
+    public class AtualizarStatusPedidoValidator : AbstractValidator<AtualizarStatusPedidoCommand>
     {
+        public AtualizarStatusPedidoValidator()
+        {
+            RuleFor(x => x.NovoStatus)
+                .IsInEnum().WithMessage("Status inválido.");
+        }
     }
 }
